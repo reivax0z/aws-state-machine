@@ -18,7 +18,7 @@ export class LocalInvoker implements Invoker {
       case 'STEP3_ARN': stepHandler = Step3Handler;
       break;
     }
-    
+
     return new Promise((resolve, reject) => {
       stepHandler.handler(payload, null, (err, data) => {
         if(err) {

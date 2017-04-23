@@ -5,7 +5,7 @@ import {LambdaStepFunction} from '../stepfunction/LambdaStepFunction';
 export class ExampleStateMachine extends StateMachine {
 
   constructor() {
-    super('example-sate-machine');
+    super('example-state-machine');
   }
 
   getEntryStep(): LambdaStepFunction {

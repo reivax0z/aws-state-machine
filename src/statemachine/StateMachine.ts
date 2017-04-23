@@ -1,15 +1,10 @@
 import async = require('async');
 
 import {LambdaStepFunction} from '../stepfunction/LambdaStepFunction';
-import {LambdaInvoker} from './LambdaInvoker';
-import {LocalInvoker} from './LocalInvoker';
 import {Invoker} from './Invoker';
 import {LOGGER} from '../logger/Logger';
-import {ENVIRONMENT} from '../Constants';
+import {ENVIRONMENT, remoteInvoker, localInvoker} from '../Constants';
 import {RUNNING_ENV} from '../Config';
-
-const localInvoker = new LocalInvoker();
-const remoteInvoker = new LambdaInvoker();
 
 export abstract class StateMachine {
   name: string;
@@ -36,15 +31,17 @@ export abstract class StateMachine {
     return new Promise((resolve, reject) => {
       async.doUntil(
         (cb) => {
+          LOGGER.info('Invoking step %s with payload %s', currentStep.name, currentPayload);
+
           invoker.invoke(currentStep, currentPayload)
-          .then((data) => {
-            currentStep = currentStep.nextFunction;
-            currentPayload = data;
-            cb();
-          })
-          .catch((error) => {
-            cb(error);
-          });
+            .then((data) => {
+              currentStep = currentStep.nextFunction;
+              currentPayload = data;
+              cb();
+            })
+            .catch((error) => {
+              cb(error);
+            });
         },
         () => {
           // finish when no more step is available

@@ -7,7 +7,7 @@ export class LambdaStepFunction {
     this.name = name;
     this.arn = arn;
   }
-  
+
   withNextStep(lambdaFunction: LambdaStepFunction) {
     this.nextFunction = lambdaFunction;
     return this;

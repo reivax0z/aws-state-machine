@@ -1,10 +1,10 @@
 {
   "name": "aws_state_machine",
   "version": "1.0.0",
-  "description": "Project to use a Lambda state machine with AWS",
+  "description": "A way to call multiple Lambda functions based on a State Machine and Step Functions.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha dist/test/**/*Spec.js"
   },
   "author": "Xavier Caron",
   "license": "MIT",
@@ -15,9 +15,15 @@
     "express": "^4.15.2"
   },
   "devDependencies": {
+    "@types/jasmine": "^2.5.47",
     "@types/node": "^7.0.13",
+    "chai": "^3.5.0",
+    "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-mocha": "^4.3.0",
     "gulp-typescript": "^3.1.6",
+    "mocha": "^3.2.0",
+    "sinon": "^2.1.0",
     "typescript": "^2.2.2"
   }
 }

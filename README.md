@@ -2,16 +2,27 @@
 
 A way to call multiple Lambda functions based on a State Machine and Step Functions.
 
-## Setup
+## Pre-requisite
 
-Install NodeJS, then:
+You need the following installed on your environment:
+* NodeJS
+* Gulp `npm install -g gulp`
+* Typescript `npm install -g typescript`
+
+## Project dependencies
 
 ```
 npm install
 ```
 
-## Compile
+## Compile project
 
 ```
 gulp default
+```
+
+## Unit tests
+
+```
+gulp test
 ```

@@ -23,15 +23,12 @@ describe('ExampleStateMachine', () => {
   describe('Methods', () => {
 
     let mock;
-    let payload = {
-      data: 'inputData'
-    };
 
     beforeEach(() => {
       mock = sinon.mock(remoteInvoker);
       mock.expects('invoke')
         .once()
-        .withArgs(STEPS, payload)
+        .withArgs(STEPS, {data: 'input'})
         .returns(Promise.resolve({data: 'output1'}));
       mock.expects('invoke')
         .once()
@@ -49,6 +46,9 @@ describe('ExampleStateMachine', () => {
 
     it('start', (done) => {
       let machine = new ExampleStateMachine();
+      let payload = {
+        data: 'input'
+      }
 
       machine.start(payload).then((data) => {
         mock.verify();

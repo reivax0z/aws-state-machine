@@ -1,7 +1,7 @@
 {
   "name": "aws_state_machine",
   "version": "1.0.0",
-  "description": "A way to call multiple Lambda functions based on a State Machine and Step Functions.",
+  "description": "A way to call multiple AWS Lambdas based on a State Machine and Step Functions.",
   "main": "index.js",
   "scripts": {
     "test": "mocha dist/test/**/*Spec.js"

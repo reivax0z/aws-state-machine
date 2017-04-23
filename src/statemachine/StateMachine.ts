@@ -24,6 +24,8 @@ export abstract class StateMachine {
   abstract getEntryStep(): LambdaStepFunction;
 
   start(payload: any): Promise<any> {
+    LOGGER.info('Starting the StateMachine %s with payload - ', this.name, payload);
+
     let currentStep = this.getEntryStep();
     let currentPayload = payload;
     let invoker = this.getInvoker();
@@ -31,7 +33,7 @@ export abstract class StateMachine {
     return new Promise((resolve, reject) => {
       async.doUntil(
         (cb) => {
-          LOGGER.info('Invoking step %s with payload %s', currentStep.name, currentPayload);
+          LOGGER.info('Invoking step %s with payload - ', currentStep.name, currentPayload);
 
           invoker.invoke(currentStep, currentPayload)
             .then((data) => {
@@ -49,7 +51,7 @@ export abstract class StateMachine {
         },
         (err, data) => {
           if (err) {
-            LOGGER.error('Failure to complete the StateMachine %s, stopped at step=%s - ', this.name, currentStep.name, err);
+            LOGGER.error('Failure to complete the StateMachine %s, stopped at step %s - ', this.name, currentStep.name, err);
             reject(err);
           } else {
             LOGGER.info('Successfully completed the StateMachine %s with returned data - ', this.name, currentPayload);

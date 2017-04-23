@@ -1,6 +1,19 @@
 # AWS State Machine
 
-A way to call multiple Lambda functions based on a State Machine and Step Functions.
+A way to call multiple AWS Lambdas based on a State Machine and Step Functions.
+
+## Stack
+
+For the dev part:
+* NodeJS
+* Typescript
+* AWS sdk
+* Bunyan
+
+For the test part:
+* mocha
+* chai
+* sinon
 
 ## Pre-requisite
 
@@ -18,7 +31,7 @@ npm install
 ## Compile project
 
 ```
-gulp default
+gulp compile
 ```
 
 ## Unit tests
